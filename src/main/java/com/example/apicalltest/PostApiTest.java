@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class PostApiTest {
     public static void main(String[] args) throws MalformedURLException, IOException {
-        String url = "http://localhost:8080/api/post";
+        String url = "http://localhost:8080/api/getCoopEmpNo";
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -26,7 +26,7 @@ public class PostApiTest {
         con.setRequestProperty("content-type", "application/json");
 
         // 데이터
-        String json = "{\"bno\": \"222\", \"depart\" : \"wr\", \"applyer\" : \"wqr\", \"userName\" : \"wqr\", \"phoneNum\" : \"wqrwr\", \"uniqNum\" : \"wqr\", \"bsys_sort\" : \"qwrwq\", \"use_sort\" : \"qwrqr\"}";
+        String json = "{\"bno\": \"1068687838\", \"depart\" : \"wr\", \"applyer\" : \"wqr\", \"userName\" : \"wqr\", \"phoneNum\" : \"wqrwr\", \"uniqNum\" : \"wqr\", \"bsys_sort\" : \"qwrwq\", \"use_sort\" : \"qwrqr\"}";
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> map = mapper.readValue(json, Map.class);
 

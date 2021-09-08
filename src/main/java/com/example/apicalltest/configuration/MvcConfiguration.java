@@ -1,4 +1,4 @@
-package com.example.apicalltest.mvcConfiguration;
+package com.example.apicalltest.configuration;
 
 import com.example.apicalltest.interceptor.LoggerInterceptor;
 import org.springframework.context.annotation.ComponentScan;
