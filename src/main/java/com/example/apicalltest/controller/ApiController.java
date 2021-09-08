@@ -17,12 +17,13 @@ import java.util.ResourceBundle;
 @Controller
 @Log4j2
 public class ApiController {
-
+    // DB 연결 설정(ResourceBundle을 통해 config.properties를 연동)
     ResourceBundle resource = ResourceBundle.getBundle("config");
     String db_url = resource.getString("db_url");
     String db_id = resource.getString("db_id");
     String db_pwd = resource.getString("db_pwd");
 
+    // 난수 4자리 생성(중복 제거)
     public static String numberGen(int len, int dupCd) {
         Random rand = new Random();
         String num = "";
@@ -44,9 +45,11 @@ public class ApiController {
     public Object apiPostCall(@RequestBody Map<String, Object> param) throws JsonProcessingException {
         Map<String, Object> responseMap = new HashMap<>();
 
+        // parameter key
         String[] key = { "bno", "depart", "applyer", "userName", "phoneNum", "uniqNum", "bsys_sort", "use_sort",
                 "use_period" };
 
+        // sql 시작
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
@@ -59,9 +62,11 @@ public class ApiController {
         String code = "";
 
         try {
+            // 데이터베이스를 접속하기 위한 드라이버 SW 로드
             Class.forName("org.mariadb.jdbc.Driver");
+            // 데이터베이스에 연결
             conn = DriverManager.getConnection(db_url, db_id, db_pwd);
-
+            // 쿼리
             sql = "SELECT COMPANY_CODE FROM COOP_COMPANY_CODE WHERE BIZ_NO =? ";
             stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
@@ -105,13 +110,13 @@ public class ApiController {
                 e.printStackTrace();
             }
         }
-
+        // 외부에서 param value 받고 -> 사번, 고유번호 출력
         Map<String, String> returnMap = new HashMap<>();
 
         String serialNum = numberGen(4, 1);
 
         returnMap.put("id", "K1" + code + serialNum);
-
+        // 고유번호 값
         String uNo = (String) param.get(key[5]);
         returnMap.put("uniqNum", uNo);
 

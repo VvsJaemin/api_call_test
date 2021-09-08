@@ -26,7 +26,7 @@ public class PostApiTest {
         con.setRequestProperty("content-type", "application/json");
 
         // 데이터
-        String json = "{\"bno\": \"1068687838\", \"depart\" : \"wr\", \"applyer\" : \"wqr\", \"userName\" : \"wqr\", \"phoneNum\" : \"wqrwr\", \"uniqNum\" : \"wqr\", \"bsys_sort\" : \"qwrwq\", \"use_sort\" : \"qwrqr\"}";
+        String json = "{\"bno\": \"10686//-87838\", \"depart\" : \"wr\", \"applyer\" : \"wqr\", \"userName\" : \"wqr\", \"phoneNum\" : \"wqrwr\", \"uniqNum\" : \"wqr\", \"bsys_sort\" : \"qwrwq\", \"use_sort\" : \"qwrqr\"}";
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> map = mapper.readValue(json, Map.class);
 
